@@ -1,0 +1,21 @@
+server:
+  port: 8071
+spring:
+  datasource:
+    username: root
+    password: abc740531
+    url: jdbc:mysql://localhost:3306/hello?useUnicode=true & characterEncoding=utf-8 &
+      useSSL=true & serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  # Mybatis 配置文件的位置
+#  mapper-locations: classpath:/mapper/*.xml
+
+  # 开启 Mybatis 的驼峰命名规则自动映射功能
+  # 这样就可以将数据库中下划线命名的字段自动映射到实体类的驼峰命名属性上
+  configuration:
+    map-underscore-to-camel-case: true
+
+  # 配置后可以在 XML 映射文件中直接使用类名,无需指定完整的包名路径
+#  type-aliases-package: org.syb001.singlecurd.pojo
