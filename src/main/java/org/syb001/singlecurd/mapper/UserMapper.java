@@ -3,6 +3,7 @@ package org.syb001.singlecurd.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+import org.syb001.singlecurd.dto.request.UserQueryDto;
 import org.syb001.singlecurd.pojo.User;
 
 import java.util.List;
@@ -10,14 +11,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserMapper {
-//    @Select("select * from test_user where id = #{id}")
-    User getUserById(Integer id);
 
-//    @Select("select * from test_user where username = #{username}")
-    User getUserByName(String username);
-
-    @Select("select * from test_user")
-    List<User> getAllUser();
+    List<User> getUserByCondition(UserQueryDto userQueryDto);
 
     @Insert("insert into test_user(username) values(#{username})")
     Integer addUser(String username);

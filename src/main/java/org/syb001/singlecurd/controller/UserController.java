@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.syb001.singlecurd.dto.request.UserAddDto;
+import org.syb001.singlecurd.dto.request.UserQueryDto;
 import org.syb001.singlecurd.dto.request.UserUpdateDto;
 import org.syb001.singlecurd.pojo.User;
 import org.syb001.singlecurd.dto.response.Result;
@@ -21,15 +22,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/getUserById")
-    public Result<User> getUserById(@RequestParam Integer id) {
-        User user = userService.getUserById(id);
-        return Result.success("查询成功", user);
-    }
-
-    @GetMapping("/getAllUser")
-    public Result<List<User>> getAllUser(){
-        List<User> users = userService.getAllUser();
+    @PostMapping("/getUserByCondition")
+    public Result<List<User>> getUserByCondition(@RequestBody UserQueryDto userQueryDto){
+        List<User> users = userService.getUserByCondition(userQueryDto);
         return Result.success("查询成功", users);
     }
 

@@ -3,6 +3,7 @@ package org.syb001.singlecurd.service.Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.syb001.singlecurd.common.enums.ErrorEnum;
+import org.syb001.singlecurd.dto.request.UserQueryDto;
 import org.syb001.singlecurd.mapper.UserMapper;
 import org.syb001.singlecurd.pojo.User;
 import org.syb001.singlecurd.service.IUserService;
@@ -17,18 +18,17 @@ public class UserService implements IUserService {
     private UserMapper userMapper;
 
     @Override
-    public User getUserById(Integer id) {
-        return userMapper.getUserById(id);
-    }
-
-    public List<User> getAllUser(){
-        return userMapper.getAllUser();
+    public List<User> getUserByCondition(UserQueryDto userQueryDto) {
+        return userMapper.getUserByCondition(userQueryDto);
     }
 
     @Override
     public void addUser(String username) {
-        User result = userMapper.getUserByName(username);
-        if(result != null) {
+        // 检查用户名是否已存在
+        UserQueryDto userQueryDto = new UserQueryDto();
+        userQueryDto.setUsername(username);
+        List<User> result = userMapper.getUserByCondition(userQueryDto);
+        if(!result.isEmpty()) {
             throw new BizException(ErrorEnum.USER_DUPLICATE);
         }
         userMapper.addUser(username);
