@@ -1,6 +1,5 @@
 package org.syb001.singlecurd.mapper;
 
-
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import org.syb001.singlecurd.dto.request.UserQueryDto;

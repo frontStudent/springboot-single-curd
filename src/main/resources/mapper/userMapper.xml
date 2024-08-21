@@ -18,6 +18,6 @@
             <if test="endTime != null">
                 and create_time &lt;= #{endTime}
             </if>
-        </where>
+        </where> order by update_time desc
     </select>
 </mapper>
